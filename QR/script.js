@@ -1,34 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const urlInput = document.getElementById('url');
-    const generateBtn = document.getElementById('generate-btn');
-    const qrcodeContainer = document.getElementById('qrcode');
-    const downloadLink = document.getElementById('download-link');
-
-    generateBtn.addEventListener('click', () => {
-        const url = urlInput.value.trim();
-
-        if (url === '') {
-            alert('Please enter a valid URL.');
-            return;
-        }
-
-        // Create a QRCode instance and generate the QR code
-        const qrcode = new QRCode(qrcodeContainer, {
-            text: url,
-            width: 128,
-            height: 128,
-        });
-
-        // Create a data URL for the QR code image
-        const qrImageDataUrl = qrcodeContainer.querySelector('img').src;
-
-        // Set the download link's href and display it
-        downloadLink.href = qrImageDataUrl;
-        downloadLink.style.display = 'block';
+function generateQRCode() {
+    const inputText = document.getElementById('inputText').value;
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: inputText,
+        width: 128,
+        height: 128,
     });
 
-    downloadLink.addEventListener('click', () => {
-        // Add 'download' attribute to initiate the download
-        downloadLink.setAttribute('download', 'qrcode.png');
-    });
-});
+    // Show the download buttons after generating the QR code
+    document.getElementById('downloadImageBtn').style.display = 'inline-block';
+    document.getElementById('downloadPDFBtn').style.display = 'inline-block';
+}
+
+function downloadQRCodeAsImage() {
+    const canvas = document.getElementById('qrcode').querySelector('canvas');
+    const url = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'qrcode.png';
+    link.click();
+}
+
+function downloadQRCodeAsPDF() {
+    const canvas = document.getElementById('qrcode').querySelector('canvas');
+    const pdf = new jsPDF();
+
+    const imgData = canvas.toDataURL('image/png');
+    // pdf.addImage(imgData, 'PNG', 10, 10, 100, 100);
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 100, 100);
+    
+    pdf.save('qrcode.pdf');
+}
