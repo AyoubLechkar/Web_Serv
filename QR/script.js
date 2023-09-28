@@ -1,9 +1,13 @@
 function generateQRCode() {
     const inputText = document.getElementById('inputText').value;
-    const qrcode = new QRCode(document.getElementById("qrcode"), {
+    const color = document.getElementById('colorPicker').value;
+
+    // Create a QR code with the selected color
+    const qr = new QRCode(document.getElementById("qrcode"), {
         text: inputText,
         width: 128,
         height: 128,
+        colorDark: color, // Set the color of the dark modules (foreground)
     });
 
     // Show the download buttons after generating the QR code
