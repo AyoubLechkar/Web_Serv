@@ -10,10 +10,8 @@ function generateQRCode() {
         qr.clear(); // Clear the existing QR code
     }
 
-    // If a canvas element exists, remove it
-    if (canvas) {
-        document.getElementById('qrcode').removeChild(canvas);
-    }
+    // Clear the entire content of the qrcode div
+    document.getElementById('qrcode').innerHTML = '';
 
     // Create a new QR code instance using qrcode.js
     qr = new QRCode(document.getElementById("qrcode"), {
