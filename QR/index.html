@@ -10,8 +10,13 @@
     <label for="inputText">Enter text or URL:</label>
     <input type="text" id="inputText" placeholder="Text or URL">
 
-    <!-- Color input -->
+    <!-- Color input for QR -->
+    <label for="colorPicker">Choose QR Color:</label>
     <input type="color" id="colorPicker" value="#000000">
+    
+    <!-- Color input for background -->
+    <label for="bgColorPicker">Choose Background Color:</label>
+    <input type="color" id="bgColorPicker" value="#FFFFFF">
     
 
     <button onclick="generateQRCode()">Generate QR Code</button>
@@ -20,7 +25,11 @@
     
     <button id="downloadImageBtn" onclick="downloadQRCodeAsImage()" style="display: none;">Download as Image</button>
     <button id="downloadPDFBtn" onclick="downloadQRCodeAsPDF()" style="display: none;">Download as PDF</button>
+    
+    <!-- Add a paragraph for the note -->
+    <p id="note" style="display: block;">Note: Choose a dark color for the QR code and a light color for the background, or colors may be automatically inverted for legibility.</p>
 
+   
     <script src="script.js"></script>
 </body>
 </html>
