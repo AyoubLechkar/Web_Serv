@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <title>QR Code Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="heading">
-            <p>
-                QR Code Generator using JavaScript's 'qrious Library'
-            </p>
+            <p>QR Code Generator using JavaScript's 'qrious Library'</p>
         </div>
         <div class="inputGroup">
             <label for="qrText">Enter Text</label>
             <input type="text" id="qrText" placeholder="Enter Text" />
+            <button class="qrBtn" id="generateButton">Generate QR Code</button>
         </div>
-        <button class="qrBtn" id="generateButton">
-            Generate QR Code
-        </button>
         <canvas id="qrCode"></canvas>
+        <button class="downloadButton" id="downloadPNGButton" style="display: none;">Download as PNG</button>
+        <button class="downloadButton" id="downloadPDFButton" style="display: none;">Download as PDF</button>
     </div>
 
     <script src="script.js"></script>
