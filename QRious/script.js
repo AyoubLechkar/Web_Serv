@@ -15,6 +15,7 @@ let qrCode;
 const generateQRCode = () => {
     const qrText = document.querySelector("#qrText").value;
     const qrColor = document.querySelector("#qrColor").value;
+    const backgroundColor = document.querySelector("#backgroundColor").value;
 
     if (qrText.trim() === "") {
         alert("Please enter text to generate a QR code.");
@@ -26,6 +27,7 @@ const generateQRCode = () => {
         size: 200,
         value: qrText,
         foreground: qrColor, // Set the QR code color
+        background: backgroundColor, // Set the background color
     });
 
     // Show the download buttons
