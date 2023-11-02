@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>QR Code Generator</title>
+</head>
+<body>
+    <h1>QR Code Generator</h1>
+    <form id="qr-form">
+        <label for="data">Data to Encode (e.g., https://www.example.com):</label>
+        <input type="text" name="data" id="data" required>
+        <label for="color">Choose QR Code Color:</label>
+        <input type="color" name="color" id="color" value="#000000"> <!-- Color picker input -->
+        <button type="submit">Generate QR Code</button>
+    </form>
+    <div id="qr-code">
+        <!-- The generated QR code image will be displayed here -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
