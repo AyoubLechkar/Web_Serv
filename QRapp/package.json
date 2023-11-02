@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "qrious": "^4.0.2",
+    "vcard-js": "^1.2.2"
+  }
+}

@@ -11,19 +11,29 @@
         <div class="heading">
             <p>QR Code Generator using JavaScript's 'qrious Library'</p>
         </div>
-        <div class="inputGroup">
-            <label for="qrText">Enter Text</label>
-            <input type="text" id="qrText" placeholder="Enter Text" />
-            <label for="qrColor">QR Code Color</label>
-            <input type="color" id="qrColor" value="#000000">
-            <label for="backgroundColor">Background Color</label>
-            <input type="color" id="backgroundColor" value="#FFFFFF">
-            <button class="qrBtn" id="generateButton">Generate QR Code</button>
+        <button class="generateLinkButton" id="generateLinkButton">Generate Link QR</button>
+        <button class="generateContactButton" id="generateContactButton">Generate Contact QR</button>
+        <div id="linkForm" style="display: none;">
+            <label for="link">Link</label>
+            <input type="text" id="link" placeholder="Enter Link" />
+            <button class="generateButton" id="generateLinkQRButton">Generate</button>
         </div>
-        <canvas id="qrCode"></canvas>
-        <button class="downloadButton" id="downloadPNGButton" style="display: none;">Download as PNG</button>
-        <button class="downloadButton" id="downloadPDFButton" style="display: none;">Download as PDF</button>
+        <div id="contactForm" style="display: none;">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter Name" />
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter Email" />
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" placeholder="Enter Phone" />
+            <label for="city">City</label>
+            <input type="text" id="city" placeholder="Enter City" />
+            <label for="country">Country</label>
+            <input type="text" id="country" placeholder="Enter Country" />
+            <button class="generateButton" id="generateContactQRButton">Generate</button>
+        </div>
     </div>
+    
+    
 
     <script src="script.js"></script>
 </body>

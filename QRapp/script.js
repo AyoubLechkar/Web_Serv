@@ -159,13 +159,20 @@ function showPdfUploadForm() {
 
     const generatePdfQRBtn = document.getElementById('generatePdfQR');
     const pdfInput = document.getElementById('pdfInput');
+    const qrCodeDiv = document.getElementById('qrcode');
 
     generatePdfQRBtn.addEventListener('click', () => {
         const pdfFile = pdfInput.files[0];
 
         if (pdfFile) {
-            // You can handle the PDF file here, for example, by uploading it to your server and generating a QR code for the link to the uploaded PDF.
-            // Example: generateQRCode("PDF", pdfFileURL);
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const pdfContent = event.target.result; // This contains the content of the PDF file.
+                generateQRCode("PDF", pdfContent, qrCodeDiv);
+            };
+
+            reader.readAsDataURL(pdfFile);
         } else {
             alert("Please select a PDF file.");
         }
@@ -192,13 +199,25 @@ function showAppLinkForm() {
 
     const generateAppQRBtn = document.getElementById('generateAppQR');
 
-    generateAppQRBtn.addEventListener('click', () => {
-        const appStoreLink = document.getElementById('appStoreLink').value;
-        const playStoreLink = document.getElementById('playStoreLink').value;
-        const otherDevicesLink = document.getElementById('otherDevicesLink').value;
+    const appStoreLinkInput = document.getElementById('appStoreLink');
+    const playStoreLinkInput = document.getElementById('playStoreLink');
+    const otherDevicesLinkInput = document.getElementById('otherDevicesLink');
+    const qrCodeDiv = document.getElementById('qrcode');
 
-        // You can handle the links and generate a QR code here.
-        // Example: generateQRCode("Application", { appStoreLink, playStoreLink, otherDevicesLink });
+    generateAppQRBtn.addEventListener('click', () => {
+        const appStoreLink = appStoreLinkInput.value;
+        const playStoreLink = playStoreLinkInput.value;
+        const otherDevicesLink = otherDevicesLinkInput.value;
+
+        // Combine the links into an object
+        const appLinks = {
+            appStoreLink,
+            playStoreLink,
+            otherDevicesLink,
+        };
+
+        // Generate a QR code for the application links
+        generateQRCode("Application", appLinks, qrCodeDiv);
     });
 }
 
@@ -214,10 +233,11 @@ function showTextForm() {
 
     const generateTextQRBtn = document.getElementById('generateTextQR');
 
+    const qrCodeDiv = document.getElementById('qrcode');
+
     generateTextQRBtn.addEventListener('click', () => {
         const text = document.getElementById('textInput').value;
-        // Generate a QR code based on the entered text.
-        // Example: generateQRCode("Text", text);
+        generateQRCode("Text", text, qrCodeDiv);
     });
 }
 
@@ -322,13 +342,24 @@ function generateQRCode(contentType, contentData) {
         });
     } else if (contentType === "Application") {
         // Handle application download links and generate QR code
+        const appLinks = contentData;
+
+        // Combine the links into a single string
+        const appLinksString = `App Store: ${appLinks.appStoreLink}, Play Store: ${appLinks.playStoreLink}, Other Devices: ${appLinks.otherDevicesLink}`;
+
         qr.set({
-            value: contentData, // Application download link
+            value: appLinksString, // Set the combined links as the value
         });
     } else if (contentType === "Text") {
         // Handle text data and generate QR code
+        // Construct a Data URI for plain text
+        const dataURI = `data:text/plain;charset=utf-8,${encodeURIComponent(contentData)}`;
+
+        // Add a random parameter to the URL to prevent caching
+        const randomURI = `${dataURI}?${Math.random()}`;
+
         qr.set({
-            value: contentData, // Text content
+            value: `http://${randomURI}`,
         });
     } else if (contentType === "Image") {
         // Handle image data and generate QR code
@@ -346,5 +377,3 @@ function generateQRCode(contentType, contentData) {
     qrCodeDiv.innerHTML = '';
     qrCodeDiv.appendChild(qr.image);
 }
-
-

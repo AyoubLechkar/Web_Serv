@@ -1,0 +1,8 @@
+{
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-fileupload": "^1.2.0",
+      "qrious": "^4.0.2"
+    }
+}
+  

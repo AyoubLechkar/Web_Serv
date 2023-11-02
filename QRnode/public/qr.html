@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generated QR Code</title>
+</head>
+<body>
+  <h1>Generated QR Code</h1>
+  <img id="qrCode" src="">
+  <p><a href="/">Generate Another QR Code</a></p>
+  <script src="qrious.min.js"></script>
+  <script>
+    const pdfUrl = new URLSearchParams(window.location.search).get('pdfUrl');
+    if (pdfUrl) {
+      const qr = new QRious({
+        element: document.getElementById('qrCode'),
+        value: pdfUrl,
+        size: 300
+      });
+    }
+  </script>
+</body>
+</html>
