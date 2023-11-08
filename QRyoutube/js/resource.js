@@ -41,6 +41,21 @@ function inputValue(id){
     return document.getElementById(id).value;
 }
 
+
+var image='';
+
+function readFIle(element){
+    if(element.files && element.files[0]){
+        const reader=new FileReader();
+        reader.onload=function(e){
+            $('#selectedImage').attr('src',e.target.result);
+            image=e.target.result;    
+            QRCodeGenerator();
+        }
+        reader.readAsDataURL(element.files[0]);
+    }
+}
+
 function QRCodeGenerator(){
 
     var planText='';
@@ -62,6 +77,7 @@ function QRCodeGenerator(){
     var App='';
     var Message='';
     var userInput='';
+    
 
     switch(formFieldType){
         case 'planText': {
@@ -120,14 +136,17 @@ function QRCodeGenerator(){
 
     var element = document.getElementById('qrcode');
     element.innerHTML='';
-    let qrcode = new QRCode(element,{
-        text: (userInput=='') ? 'www.udemy.com':userInput,
-        width: 250,
-        height: 250,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel:QRCode.CorrectLevel.H
-    });
+    // simpleGenerator(element,userInput);
+    attractiveQR_Generator(element,userInput,image);
+
+    // let qrcode = new QRCode(element,{
+    //     text: (userInput=='') ? 'www.udemy.com':userInput,
+    //     width: 250,
+    //     height: 250,
+    //     colorDark: '#000000',
+    //     colorLight: '#ffffff',
+    //     correctLevel:QRCode.CorrectLevel.H
+    // });
 
 }
 

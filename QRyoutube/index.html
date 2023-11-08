@@ -13,6 +13,12 @@
     <!-- icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link class="jsbin" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
     <title>QR Code Generator</title>
 </head>
 <body>
@@ -45,6 +51,9 @@
 
 
                 <div class="d-flex align-items-center flex-column">
+                    <input type="file" class="form-control mt-2" onchange="readFIle(this)" name="selectImage" id="selectImage" accept="image/*">
+                    <br>
+                    <img src="#" alt="" id="selectedImage" width="50" height="50" srcset="">
                     <input type="submit" onclick="QRCodeGenerator()" value="Generate" id="generateButton" 
                     class="p-2 m-2 bg-secondary text-white rounded border-0 w-50 shadow-lg">
                 </div>
@@ -76,8 +85,10 @@
     </div>
 
 
-<script src="js/qrcode.min.js"></script>
-<script src="js/qrcode.js"></script>
+<!-- <script src="js/qrcode.min.js"></script> -->
+<script src="js/qr-code-style.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/resource.js"></script>
 
 </body>
 </html>
